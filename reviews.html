@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+    <style>
+        .product {
+            margin-bottom: 10px;
+        }
+        .reviews {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Просмотр отзывов</h1>
+    <ul id="productList">
+        <li>
+            <h3>Продукт 1</h3>
+            <button class="toggleButton" onclick="toggleReviews(0)">Показать отзывы</button>
+            <ul class="reviews" style="display: none;">
+                <li>Отзыв: Очень хороший продукт <button onclick="deleteReview(0)">Удалить</button></li>
+            </ul>
+        </li>
+        <li>
+            <h3>Продукт 2</h3>
+            <button class="toggleButton" onclick="toggleReviews(1)">Показать отзывы</button>
+            <ul class="reviews" style="display: none;">
+                <li>Отзыв: Не понравился продукт <button onclick="deleteReview(1)">Удалить</button></li>
+                <li>Отзыв: Средний продукт <button onclick="deleteReview(2)">Удалить</button></li>
+            </ul>
+        </li>
+    </ul>
+
+    <script src="review.js"></script>
+</body>
+</html>

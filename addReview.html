@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление отзыва</title>
+</head>
+<body>
+    <h1>Добавить отзыв о продукте</h1>
+
+    <form id="reviewForm" onsubmit="addReview(event)">
+        <div>
+            <label for="productName">Название продукта:</label><br>
+            <input type="text" id="productName" name="productName"><br>
+            <span id="productNameError" style="color: red; display: none;">Поле должно быть заполнено</span>
+        </div>
+        <div>
+            <label for="reviewText">Текст отзыва:</label><br>
+            <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea><br>
+            <span id="reviewTextError" style="color: red; display: none;">Поле должно быть заполнено</span>
+        </div>
+        <button type="submit">Добавить отзыв</button>
+    </form>
+
+  <script>
+    function addReview(event) {
+        event.preventDefault();
+        const productName = document.getElementById('productName').value;
+        const reviewText = document.getElementById('reviewText').value;
+
+        if (productName.trim() === "") {
+            document.getElementById('productNameError').style.display = 'block';
+        } else {
+            document.getElementById('productNameError').style.display = 'none';
+        }
+
+        if (reviewText.trim() === "") {
+            document.getElementById('reviewTextError').style.display = 'block';
+        } else {
+            document.getElementById('reviewTextError').style.display = 'none';
+        }
+
+        if (productName.trim() !== "" && reviewText.trim() !== "") {
+        // Сохраняем отзыв в localstorage
+            const review = {
+            productName: productName,
+            reviewText: reviewText
+            };
+            let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push(review);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+        // Очищаем поля ввода
+            document.getElementById('productName').value = '';
+            document.getElementById('reviewText').value = '';
+
+            alert('Отзыв успешно добавлен!');
+        }
+    }
+  </script>
+</body>
+</html>
